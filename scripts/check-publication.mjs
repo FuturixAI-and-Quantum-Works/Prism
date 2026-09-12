@@ -143,7 +143,7 @@ const blockers = [
     id: "private-host",
     message: "A private or temporary service host remains",
     evidence: matchingFiles(
-      /\b(?:[a-z0-9-]+\.ngrok-free\.dev|(?!www\.)[a-z0-9-]+\.futurixai\.com)\b/i,
+      /\b(?:[a-z0-9-]+\.ngrok-free\.dev|(?!(?:www|prism)\.)[a-z0-9-]+\.futurixai\.com)\b/i,
     ),
   },
   {

@@ -3,7 +3,17 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/assets/futurixai-wordmark-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="docs/assets/futurixai-wordmark-light.svg">
-      <img src="docs/assets/futurixai-wordmark-light.svg" alt="FuturixAI" height="42">
+      <img src="docs/assets/futurixai-wordmark-light.svg" alt="FuturixAI" height="32">
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://prism.futurixai.com/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/prism-mark-dark.gif">
+      <source media="(prefers-color-scheme: light)" srcset="docs/assets/prism-mark-light.gif">
+      <img src="docs/assets/prism-mark-light.gif" alt="Animated Prism logo" width="112" height="112">
     </picture>
   </a>
 </p>
@@ -34,8 +44,6 @@
 ---
 
 Prism is an open-source contract litigation management system for drafting, reviewing, sharing, and managing legal work. Luna is the AI assistant inside Prism. The browser application uses React and Vite. The API uses Express, Better Auth, PostgreSQL, and Drizzle ORM.
-
-> Prism and its bundled templates do not provide legal advice. Generated text can be wrong, incomplete, or unsuitable for a jurisdiction. A qualified lawyer must review every document before anyone relies on it.
 
 ## Built for contract litigation
 
