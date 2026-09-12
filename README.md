@@ -1,24 +1,12 @@
-<p align="center">
-  <a href="https://www.futurixai.com/">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/futurixai-wordmark-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="docs/assets/futurixai-wordmark-light.svg">
-      <img src="docs/assets/futurixai-wordmark-light.svg" alt="FuturixAI" height="32">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
+<h1 align="center">
   <a href="https://prism.futurixai.com/">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/prism-mark-dark.gif">
-      <source media="(prefers-color-scheme: light)" srcset="docs/assets/prism-mark-light.gif">
-      <img src="docs/assets/prism-mark-light.gif" alt="Animated Prism logo" width="112" height="112">
+      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/prism-lockup-dark.gif">
+      <source media="(prefers-color-scheme: light)" srcset="docs/assets/prism-lockup-light.gif">
+      <img src="docs/assets/prism-lockup-light.gif" alt="Prism" width="320" height="96">
     </picture>
   </a>
-</p>
-
-<h1 align="center">Prism</h1>
+</h1>
 
 <p align="center"><strong>Contract litigation management system</strong></p>
 
