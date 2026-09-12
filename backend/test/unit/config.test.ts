@@ -59,8 +59,14 @@ describe("parseAppConfig", () => {
     [{ STORAGE_PROVIDER: "local" }, /filesystem storage is not allowed/],
     [{ BETTER_AUTH_URL: "http://api.example.com" }, /must use HTTPS/],
     [{ BETTER_AUTH_URL: "https://api.example.com/auth" }, /invalid origin/],
-    [{ RAG_API_URL: "http://rag.example.com" }, /must use HTTPS/],
-    [{ RAG_API_URL: "https://rag.example.com?token=secret" }, /query or fragment/],
+    [{ QDRANT_URL: "http://qdrant.example.com", QDRANT_API_KEY: "test-api-key" }, /must use HTTPS/],
+    [
+      {
+        QDRANT_URL: "https://qdrant.example.com?token=secret",
+        QDRANT_API_KEY: "test-api-key",
+      },
+      /query or fragment/,
+    ],
     [{ HEALTHCHECK_API_URL: "http://api.example.com/health" }, /must use HTTPS/],
     [{ CONVERSION_SERVICE_URL: "http://converter.example.com" }, /must use HTTPS/],
     [{ CONVERSION_CHROMIUM_SANDBOX_MODE: "relaxed" }, /must be enabled or disabled/],
@@ -87,7 +93,8 @@ describe("parseAppConfig", () => {
       NODE_ENV: "development",
       BETTER_AUTH_URL: "http://localhost:3001",
       PUBLIC_API_URL: "http://localhost:3001",
-      RAG_API_URL: "http://127.0.0.1:8000",
+      QDRANT_URL: "http://127.0.0.1:6333",
+      QDRANT_API_KEY: "test-api-key",
     });
 
     expect(config.storage).toEqual({
@@ -96,8 +103,9 @@ describe("parseAppConfig", () => {
       publicApiUrl: "http://localhost:3001",
     });
     expect(config.rag).toEqual({
-      kind: "http",
-      baseUrl: "http://127.0.0.1:8000",
+      kind: "qdrant",
+      url: "http://127.0.0.1:6333",
+      apiKey: "test-api-key",
       requestTimeoutMs: 15_000,
     });
     expect(config.mail).toEqual({ kind: "console", sendTimeoutMs: 10_000 });
@@ -117,7 +125,8 @@ describe("parseAppConfig", () => {
         ...validProductionEnvironment,
         NODE_ENV: "development",
         BETTER_AUTH_URL: "http://localhost:3001",
-        RAG_API_URL: "http://rag:8000",
+        QDRANT_URL: "http://qdrant:6333",
+        QDRANT_API_KEY: "test-api-key",
       }),
     ).toThrow(/must use HTTPS/);
   });

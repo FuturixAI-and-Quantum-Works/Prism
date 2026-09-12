@@ -7,9 +7,33 @@ import {
   normalizeRetrievalError,
   parseRetrievalConfiguration,
 } from "../../src/modules/retrieval/retrieval.config.js";
-import { RetrievalProviderClient } from "../../src/modules/retrieval/retrieval.provider.js";
+import {
+  RetrievalProviderClient,
+  type RetrievalVectorStore,
+} from "../../src/modules/retrieval/retrieval.provider.js";
 
 const testDirectory = dirname(fileURLToPath(import.meta.url));
+const configuredProvider = {
+  url: "https://qdrant.example.com",
+  apiKey: "test-api-key",
+} as const;
+
+function vectorStore(overrides: Partial<RetrievalVectorStore> = {}): RetrievalVectorStore {
+  const unexpected = async (): Promise<never> => {
+    throw new Error("Unexpected vector-store call");
+  };
+  return {
+    getCollections: unexpected,
+    collectionExists: unexpected,
+    createCollection: unexpected,
+    createPayloadIndex: unexpected,
+    upsert: unexpected,
+    query: unexpected,
+    delete: unexpected,
+    getCollection: unexpected,
+    ...overrides,
+  };
+}
 
 describe("RAG configuration fail-safe", () => {
   it("disables RAG without an endpoint and performs zero fetches", async () => {
@@ -27,7 +51,7 @@ describe("RAG configuration fail-safe", () => {
     assert.deepEqual(await service.health(), {
       ok: false,
       status: "disabled",
-      error: "RAG is disabled because RAG_API_URL is not configured.",
+      error: "RAG is disabled because QDRANT_URL is not configured.",
     });
 
     const operations = [
@@ -46,7 +70,7 @@ describe("RAG configuration fail-safe", () => {
       await assert.rejects(operation, (error: unknown) => {
         assert.equal(
           error instanceof Error ? error.message : "",
-          "RAG is disabled because RAG_API_URL is not configured.",
+          "RAG is disabled because QDRANT_URL is not configured.",
         );
         return true;
       });
@@ -58,23 +82,35 @@ describe("RAG configuration fail-safe", () => {
   it("validates configured endpoints without exposing them", () => {
     assert.deepEqual(parseRetrievalConfiguration(undefined), { status: "disabled" });
     assert.throws(
-      () => parseRetrievalConfiguration("not a URL", "production"),
+      () => parseRetrievalConfiguration({ url: "not a URL", apiKey: "test-api-key" }, "production"),
       /valid absolute URL/,
     );
     assert.throws(
-      () => parseRetrievalConfiguration("http://rag.example.com", "production"),
+      () =>
+        parseRetrievalConfiguration(
+          { url: "http://qdrant.example.com", apiKey: "test-api-key" },
+          "production",
+        ),
       /must use HTTPS/,
     );
     assert.throws(
-      () => parseRetrievalConfiguration("http://rag.example.com", "development"),
+      () =>
+        parseRetrievalConfiguration(
+          { url: "http://qdrant.example.com", apiKey: "test-api-key" },
+          "development",
+        ),
       /must use HTTPS/,
     );
-    assert.deepEqual(parseRetrievalConfiguration("http://localhost:8080/", "development"), {
-      status: "configured",
-      baseUrl: "http://localhost:8080",
-    });
+    assert.deepEqual(
+      parseRetrievalConfiguration({ url: "http://localhost:6333/" }, "development"),
+      {
+        status: "configured",
+        url: "http://localhost:6333",
+        apiKey: "",
+      },
+    );
 
-    const service = new RetrievalProviderClient("https://private-rag.example.com");
+    const service = new RetrievalProviderClient(configuredProvider);
     assert.equal(service.status, "configured");
     assert.equal("configuredUrl" in service, false);
   });
@@ -103,32 +139,35 @@ describe("RAG configuration fail-safe", () => {
   });
 
   it("combines caller cancellation with the request timeout", async () => {
-    let requestSignal: AbortSignal | undefined;
-    const service = new RetrievalProviderClient("https://rag.example.com", {
+    let queryCount = 0;
+    const service = new RetrievalProviderClient(configuredProvider, {
       requestTimeoutMs: 60_000,
-      fetch: async (_input, init) => {
-        requestSignal = init?.signal ?? undefined;
-        return new Response(JSON.stringify({ results: [] }), {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        });
-      },
+      client: vectorStore({
+        query: () => {
+          queryCount += 1;
+          return new Promise<never>(() => undefined);
+        },
+      }),
     });
     const controller = new AbortController();
 
-    await service.queryCollection("collection", "query", 8, controller.signal);
-    assert.equal(requestSignal?.aborted, false);
+    const operation = service.queryCollection("collection", "query", 8, controller.signal);
     controller.abort();
-    assert.equal(requestSignal?.aborted, true);
+    await assert.rejects(operation, (error: unknown) => {
+      assert.equal(error instanceof Error ? error.message : "", "RAG query was cancelled.");
+      return true;
+    });
+    assert.equal(queryCount, 1);
   });
 
   it("rejects malformed provider result entries", async () => {
-    const service = new RetrievalProviderClient("https://rag.example.com", {
-      fetch: async () =>
-        new Response(JSON.stringify({ results: [{ rank: "first", document_id: "document-1" }] }), {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        }),
+    const service = new RetrievalProviderClient(configuredProvider, {
+      client: vectorStore({
+        query: async () =>
+          ({
+            points: [{ score: 0.9, payload: { document_id: 42 } }],
+          }) as never,
+      }),
     });
 
     assert.deepEqual(await service.queryCollection("collection", "query"), []);

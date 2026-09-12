@@ -62,12 +62,7 @@ approvalsRouter.put("/:subjectType/:subjectId/approvers", requireAuth, async (re
     const actor = userContext(res);
     const { subjectType, subjectId } = subjectParams(req);
     res.json(
-      await approvalsService.upsertApprovers(
-        actor,
-        subjectType,
-        subjectId,
-        req.body?.approvers,
-      ),
+      await approvalsService.upsertApprovers(actor, subjectType, subjectId, req.body?.approvers),
     );
   } catch (error) {
     sendGovernanceError(res, error);
@@ -100,14 +95,7 @@ approvalsRouter.post("/:subjectType/:subjectId/request", requireAuth, async (req
     const { subjectType, subjectId } = subjectParams(req);
     res
       .status(201)
-      .json(
-        await approvalsService.request(
-          actor,
-          subjectType,
-          subjectId,
-          req.body ?? {},
-        ),
-      );
+      .json(await approvalsService.request(actor, subjectType, subjectId, req.body ?? {}));
   } catch (error) {
     sendGovernanceError(res, error);
   }

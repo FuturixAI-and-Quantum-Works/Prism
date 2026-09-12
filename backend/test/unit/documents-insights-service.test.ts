@@ -151,11 +151,7 @@ describe("DocumentInsightsService", () => {
     };
     response.status.mockReturnValue(response);
 
-    controller.generate(
-      { params: { documentId } } as Request,
-      response as Response,
-      vi.fn(),
-    );
+    controller.generate({ params: { documentId } } as Request, response as Response, vi.fn());
 
     await vi.waitFor(() => expect(response.status).toHaveBeenCalledWith(502));
     expect(json).toHaveBeenCalledWith({

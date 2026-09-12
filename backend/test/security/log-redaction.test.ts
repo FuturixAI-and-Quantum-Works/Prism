@@ -27,10 +27,6 @@ const targets = [
     path: "../../src/lib/email.ts",
     allowedEvents: new Set(["[email] delivery_suppressed", "[email] send_failed"]),
   },
-  {
-    path: "../../src/modules/documents/documents.core.controller.ts",
-    allowedEvents: new Set(["[documents] create_failed"]),
-  },
 ] as const;
 
 const deniedLogContent = [

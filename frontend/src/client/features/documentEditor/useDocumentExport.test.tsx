@@ -25,7 +25,7 @@ describe('useDocumentExport', () => {
   })
 
   it.each(['pdf', 'docx'] as const)('downloads a confirmed %s export', async (format) => {
-    mockedApiFetch.mockResolvedValue(new Response(new Blob(['document'])))
+    mockedApiFetch.mockResolvedValue(new Response('document'))
     const { result } = renderHook(() =>
       useDocumentExport({
         documentId: 'document-1',
@@ -77,7 +77,7 @@ describe('useDocumentExport', () => {
   it('reports network failures and keeps the operation retryable', async () => {
     mockedApiFetch
       .mockRejectedValueOnce(new Error('Network unavailable'))
-      .mockResolvedValueOnce(new Response(new Blob(['document'])))
+      .mockResolvedValueOnce(new Response('document'))
     const { result } = renderHook(() =>
       useDocumentExport({
         documentId: 'document-1',
@@ -119,8 +119,10 @@ describe('useDocumentExport', () => {
       exportPromise = result.current.exportPdf()
     })
     rerender({ documentId: 'document-2' })
-    rejectExport(new Error('Old document export failed.'))
-    await act(async () => exportPromise)
+    await act(async () => {
+      rejectExport(new Error('Old document export failed.'))
+      expect(await exportPromise).toBe(false)
+    })
 
     expect(result.current.error).toBeNull()
   })
