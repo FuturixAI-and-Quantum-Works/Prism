@@ -41,12 +41,6 @@ Create, compare, and summarize documents from one focused workspace.
 
 ![Prism Assistant showing document creation, comparison, and summarization actions](docs/assets/screenshots/prism-assistant.jpg)
 
-### Start from a seeded template
-
-Launch common legal workflows from the included agreement and policy templates.
-
-![Prism template library populated with seven seeded legal templates](docs/assets/screenshots/seeded-template-library.jpg)
-
 ## Built for contract litigation
 
 - ⚖️ **Matters and collaboration** — Organize projects, matters, folders, participants, and access in one workspace.
