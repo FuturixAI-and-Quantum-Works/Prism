@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 1,
+  "key": "core-neutral",
+  "label": "Core templates with selectable governing law",
+  "jurisdictionScope": {
+    "kind": "neutral",
+    "governingLawOptions": [
+      "State of Delaware",
+      "State of New York",
+      "State of California",
+      "State of Texas",
+      "England and Wales",
+      "Singapore",
+      "Hong Kong"
+    ]
+  },
+  "templates": [
+    {
+      "id": "nda",
+      "name": "Mutual NDA Agreement",
+      "category": "NDA",
+      "description": "Standard non-disclosure agreement for mutual confidentiality between parties.",
+      "fields": [
+        {
+          "id": "party1Name",
+          "label": "Disclosing Party Name",
+          "placeholder": "Enter company or individual name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "party1Address",
+          "label": "Disclosing Party Address",
+          "placeholder": "Enter full address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "party2Name",
+          "label": "Receiving Party Name",
+          "placeholder": "Enter company or individual name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "party2Address",
+          "label": "Receiving Party Address",
+          "placeholder": "Enter full address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "effectiveDate",
+          "label": "Effective Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "confidentialityPeriod",
+          "label": "Confidentiality Period (Years)",
+          "placeholder": "e.g., 2",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "jurisdiction",
+          "label": "Governing Law",
+          "placeholder": "Select jurisdiction",
+          "type": "select",
+          "required": true,
+          "options": [
+            "State of Delaware",
+            "State of New York",
+            "State of California",
+            "State of Texas",
+            "England and Wales",
+            "Singapore",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "bodyFile": "nda.html"
+    },
+    {
+      "id": "employment",
+      "name": "Employment Contract",
+      "category": "EMPLOYMENT CONTRACT",
+      "description": "Agreement detailing employment terms and conditions.",
+      "fields": [
+        {
+          "id": "employerName",
+          "label": "Employer Name",
+          "placeholder": "Enter company name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "employerAddress",
+          "label": "Employer Address",
+          "placeholder": "Enter company address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "employeeName",
+          "label": "Employee Name",
+          "placeholder": "Enter employee full name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "employeeAddress",
+          "label": "Employee Address",
+          "placeholder": "Enter employee address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "position",
+          "label": "Job Title/Position",
+          "placeholder": "e.g., Software Engineer",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "startDate",
+          "label": "Start Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "salary",
+          "label": "Annual Salary",
+          "placeholder": "e.g., 75000",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "workLocation",
+          "label": "Work Location",
+          "placeholder": "e.g., New York, NY",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "probationPeriod",
+          "label": "Probation Period (Months)",
+          "placeholder": "e.g., 3",
+          "type": "number",
+          "required": false
+        },
+        {
+          "id": "jurisdiction",
+          "label": "Governing Law",
+          "placeholder": "Select jurisdiction",
+          "type": "select",
+          "required": true,
+          "options": [
+            "State of Delaware",
+            "State of New York",
+            "State of California",
+            "State of Texas",
+            "England and Wales",
+            "Singapore",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "bodyFile": "employment.html"
+    },
+    {
+      "id": "service",
+      "name": "Service Level Agreement",
+      "category": "SERVICE AGREEMENT",
+      "description": "Define service expectations, metrics, and responsibilities.",
+      "fields": [
+        {
+          "id": "providerName",
+          "label": "Service Provider Name",
+          "placeholder": "Enter provider company name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "providerAddress",
+          "label": "Provider Address",
+          "placeholder": "Enter provider address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "clientName",
+          "label": "Client Name",
+          "placeholder": "Enter client company name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "clientAddress",
+          "label": "Client Address",
+          "placeholder": "Enter client address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "serviceDescription",
+          "label": "Service Description",
+          "placeholder": "Describe the services to be provided",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "contractValue",
+          "label": "Contract Value",
+          "placeholder": "e.g., 50000",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "startDate",
+          "label": "Start Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "endDate",
+          "label": "End Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "paymentTerms",
+          "label": "Payment Terms",
+          "placeholder": "Select payment terms",
+          "type": "select",
+          "required": true,
+          "options": ["Net 30", "Net 60", "Net 90", "Upon Completion", "Monthly", "Quarterly"]
+        },
+        {
+          "id": "jurisdiction",
+          "label": "Governing Law",
+          "placeholder": "Select jurisdiction",
+          "type": "select",
+          "required": true,
+          "options": [
+            "State of Delaware",
+            "State of New York",
+            "State of California",
+            "State of Texas",
+            "England and Wales",
+            "Singapore",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "bodyFile": "service.html"
+    },
+    {
+      "id": "privacy",
+      "name": "Privacy Policy Template",
+      "category": "PRIVACY POLICY",
+      "description": "Comprehensive privacy policy for websites and applications.",
+      "fields": [
+        {
+          "id": "companyName",
+          "label": "Company Name",
+          "placeholder": "Enter your company name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "websiteUrl",
+          "label": "Website URL",
+          "placeholder": "e.g., www.example.com",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "contactEmail",
+          "label": "Contact Email",
+          "placeholder": "e.g., privacy@example.com",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "effectiveDate",
+          "label": "Effective Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "jurisdiction",
+          "label": "Governing Law",
+          "placeholder": "Select jurisdiction",
+          "type": "select",
+          "required": true,
+          "options": [
+            "State of Delaware",
+            "State of New York",
+            "State of California",
+            "State of Texas",
+            "England and Wales",
+            "Singapore",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "bodyFile": "privacy.html"
+    },
+    {
+      "id": "partnership",
+      "name": "Partnership Agreement",
+      "category": "PARTNERSHIP",
+      "description": "Framework for business partnerships and joint ventures.",
+      "fields": [
+        {
+          "id": "partner1Name",
+          "label": "First Partner Name",
+          "placeholder": "Enter name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "partner1Address",
+          "label": "First Partner Address",
+          "placeholder": "Enter address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "partner1Contribution",
+          "label": "First Partner Contribution (%)",
+          "placeholder": "e.g., 50",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "partner2Name",
+          "label": "Second Partner Name",
+          "placeholder": "Enter name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "partner2Address",
+          "label": "Second Partner Address",
+          "placeholder": "Enter address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "partner2Contribution",
+          "label": "Second Partner Contribution (%)",
+          "placeholder": "e.g., 50",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "partnershipName",
+          "label": "Partnership Name",
+          "placeholder": "Enter business name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "businessPurpose",
+          "label": "Business Purpose",
+          "placeholder": "Describe the business purpose",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "effectiveDate",
+          "label": "Effective Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "jurisdiction",
+          "label": "Governing Law",
+          "placeholder": "Select jurisdiction",
+          "type": "select",
+          "required": true,
+          "options": [
+            "State of Delaware",
+            "State of New York",
+            "State of California",
+            "State of Texas",
+            "England and Wales",
+            "Singapore",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "bodyFile": "partnership.html"
+    },
+    {
+      "id": "lease",
+      "name": "Commercial Lease",
+      "category": "LEASE AGREEMENT",
+      "description": "Standard lease agreement for commercial property rentals.",
+      "fields": [
+        {
+          "id": "landlordName",
+          "label": "Landlord Name",
+          "placeholder": "Enter landlord name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "landlordAddress",
+          "label": "Landlord Address",
+          "placeholder": "Enter landlord address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "tenantName",
+          "label": "Tenant Name",
+          "placeholder": "Enter tenant name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "tenantAddress",
+          "label": "Tenant Address",
+          "placeholder": "Enter tenant address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "propertyAddress",
+          "label": "Property Address",
+          "placeholder": "Enter property address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "monthlyRent",
+          "label": "Monthly Rent",
+          "placeholder": "e.g., 5000",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "securityDeposit",
+          "label": "Security Deposit",
+          "placeholder": "e.g., 10000",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "startDate",
+          "label": "Lease Start Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "endDate",
+          "label": "Lease End Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "jurisdiction",
+          "label": "Governing Law",
+          "placeholder": "Select jurisdiction",
+          "type": "select",
+          "required": true,
+          "options": [
+            "State of Delaware",
+            "State of New York",
+            "State of California",
+            "State of Texas",
+            "England and Wales",
+            "Singapore",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "bodyFile": "lease.html"
+    },
+    {
+      "id": "consulting",
+      "name": "Consulting Agreement",
+      "category": "CONSULTING",
+      "description": "Contract for consulting services and deliverables.",
+      "fields": [
+        {
+          "id": "consultantName",
+          "label": "Consultant Name",
+          "placeholder": "Enter consultant name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "consultantAddress",
+          "label": "Consultant Address",
+          "placeholder": "Enter consultant address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "clientName",
+          "label": "Client Name",
+          "placeholder": "Enter client company name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "clientAddress",
+          "label": "Client Address",
+          "placeholder": "Enter client address",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "servicesDescription",
+          "label": "Services Description",
+          "placeholder": "Describe consulting services",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "hourlyRate",
+          "label": "Hourly Rate",
+          "placeholder": "e.g., 150",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "startDate",
+          "label": "Start Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "endDate",
+          "label": "End Date",
+          "placeholder": "",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "paymentTerms",
+          "label": "Payment Terms",
+          "placeholder": "Select payment terms",
+          "type": "select",
+          "required": true,
+          "options": ["Net 30", "Net 60", "Net 90", "Upon Completion", "Monthly", "Quarterly"]
+        },
+        {
+          "id": "jurisdiction",
+          "label": "Governing Law",
+          "placeholder": "Select jurisdiction",
+          "type": "select",
+          "required": true,
+          "options": [
+            "State of Delaware",
+            "State of New York",
+            "State of California",
+            "State of Texas",
+            "England and Wales",
+            "Singapore",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "bodyFile": "consulting.html"
+    }
+  ]
+}

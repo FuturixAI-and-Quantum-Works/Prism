@@ -1,0 +1,243 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      PUPPETEER_SKIP_DOWNLOAD: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: 22
+      - run: npm ci
+      - run: npm run ci:quality
+
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run check:docs
+
+  test-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      PUPPETEER_SKIP_DOWNLOAD: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: 22
+      - run: npm ci
+      - run: npm run ci:test-build
+
+  postgres-16:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      PRISM_CI_POSTGRES_ADMIN_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+      PUPPETEER_SKIP_DOWNLOAD: "true"
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: 22
+      - run: npm ci
+      - run: npm run ci:postgres
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      PUPPETEER_SKIP_DOWNLOAD: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e:mocked
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-artifacts-${{ github.run_attempt }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          include-hidden-files: true
+          retention-days: 5
+
+  compose-config:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      docker-available: ${{ steps.docker.outputs.available }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: docker
+        run: |
+          if docker info >/dev/null 2>&1; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.docker.outputs.available == 'true'
+        run: |
+          test -f compose.yaml
+          docker compose -f compose.yaml config --quiet
+          while IFS= read -r dockerfile; do
+            test -z "$dockerfile" || docker build --check -f "$dockerfile" .
+          done < <(git ls-files '*Dockerfile*')
+
+  container-smoke:
+    needs: compose-config
+    if: needs.compose-config.outputs.docker-available == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      COMPOSE_PROJECT_NAME: prism-ci-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: docker compose -f compose.yaml build backend frontend
+      - run: |
+          test "$(docker image inspect prism-backend:local --format '{{.Config.WorkingDir}}')" = /app/backend
+          test "$(docker image inspect prism-backend:local --format '{{.Config.User}}')" = node
+          test "$(docker image inspect prism-backend:local --format '{{json .Config.Entrypoint}}')" = '["/usr/bin/tini","--"]'
+          test "$(docker image inspect prism-backend:local --format '{{json .Config.Cmd}}')" = '["node","dist/index.js"]'
+          docker run --rm --entrypoint node prism-backend:local -e '
+            const fs = require("node:fs");
+            const required = [
+              "/app/backend/package.json",
+              "/app/backend/dist/index.js",
+              "/app/backend/dist/worker.js",
+              "/app/backend/dist/scripts/migrate.js",
+              "/app/backend/drizzle/0000_prism_baseline.sql",
+              "/app/backend/drizzle/meta/_journal.json",
+              "/app/packages/protocol/package.json",
+              "/app/packages/protocol/dist/index.js",
+            ];
+            const missing = required.filter((path) => !fs.existsSync(path));
+            if (missing.length > 0) throw new Error(`Missing runtime files: ${missing.join(", ")}`);
+            const forbidden = ["/app/package.json", "/app/backend/src", "/app/frontend"];
+            const unexpected = forbidden.filter((path) => fs.existsSync(path));
+            if (unexpected.length > 0) {
+              throw new Error(`Unexpected runtime files: ${unexpected.join(", ")}`);
+            }
+            require.resolve("drizzle-orm/node-postgres/migrator");
+          '
+      - run: docker compose -f compose.yaml up --detach --wait
+      - run: |
+          expected="$(docker compose -f compose.yaml config --services | sort)"
+          running="$(docker compose -f compose.yaml ps --services --status running | sort)"
+          test "$running" = "$expected"
+          for service in postgres mailpit backend worker frontend; do
+            container_id="$(docker compose -f compose.yaml ps -q "$service")"
+            test -n "$container_id"
+            test "$(docker inspect "$container_id" --format '{{.State.Health.Status}}')" = healthy
+          done
+          worker_id="$(docker compose -f compose.yaml ps -q worker)"
+          case "$(docker inspect "$worker_id" --format '{{.HostConfig.NetworkMode}}')" in
+            container:*) exit 1 ;;
+          esac
+          test "$(curl --fail --silent http://127.0.0.1:8003/health)" = '{"ok":true}'
+          test "$(curl --fail --silent http://127.0.0.1:8080/health)" = '{"ok":true}'
+          migration_count="$(
+            docker compose -f compose.yaml exec -T postgres \
+              psql -U prism -d prism -Atqc \
+              'select count(*) from drizzle.__drizzle_migrations'
+          )"
+          test "$migration_count" = 1
+          docker compose -f compose.yaml exec -T backend node dist/scripts/migrate.js
+          migration_count="$(
+            docker compose -f compose.yaml exec -T postgres \
+              psql -U prism -d prism -Atqc \
+              'select count(*) from drizzle.__drizzle_migrations'
+          )"
+          test "$migration_count" = 1
+      - if: failure()
+        run: docker compose -f compose.yaml logs --no-color
+      - if: always()
+        run: docker compose -f compose.yaml down --volumes --remove-orphans
+
+  publication-gate:
+    if: always()
+    needs:
+      - quality
+      - docs
+      - test-build
+      - postgres-16
+      - browser
+      - compose-config
+      - container-smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    env:
+      BROWSER_RESULT: ${{ needs.browser.result }}
+      COMPOSE_CONFIG_RESULT: ${{ needs.compose-config.result }}
+      CONTAINER_SMOKE_RESULT: ${{ needs.container-smoke.result }}
+      DOCS_RESULT: ${{ needs.docs.result }}
+      POSTGRES_RESULT: ${{ needs.postgres-16.result }}
+      QUALITY_RESULT: ${{ needs.quality.result }}
+      TEST_BUILD_RESULT: ${{ needs.test-build.result }}
+    steps:
+      - run: |
+          test "$QUALITY_RESULT" = success
+          test "$DOCS_RESULT" = success
+          test "$TEST_BUILD_RESULT" = success
+          test "$POSTGRES_RESULT" = success
+          test "$BROWSER_RESULT" = success
+          test "$COMPOSE_CONFIG_RESULT" = success
+          test "$CONTAINER_SMOKE_RESULT" = success -o "$CONTAINER_SMOKE_RESULT" = skipped

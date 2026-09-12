@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="filter-search">
+<g id="Group">
+<path id="Vector" d="M9.54667 12.7133C9.54667 13.12 9.27998 13.6533 8.93998 13.86L8 14.4667C7.12667 15.0067 5.91333 14.4 5.91333 13.32V9.75334C5.91333 9.28 5.64667 8.67334 5.37333 8.34001L2.81331 5.64667C2.47331 5.30667 2.20667 4.70667 2.20667 4.30001V2.75334C2.20667 1.94667 2.81334 1.34001 3.55334 1.34001H12.4467C13.1867 1.34001 13.7933 1.94667 13.7933 2.68667V4.16667C13.7933 4.70667 13.4533 5.38 13.12 5.71334" stroke="var(--stroke-0, #454545)" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Group_2">
+<path id="Vector_2" d="M10.7133 11.0133C11.8915 11.0133 12.8467 10.0582 12.8467 8.88001C12.8467 7.7018 11.8915 6.74666 10.7133 6.74666C9.53513 6.74666 8.58 7.7018 8.58 8.88001C8.58 10.0582 9.53513 11.0133 10.7133 11.0133Z" stroke="var(--stroke-0, #454545)" strokeLinecap="round" strokeLinejoin="round"/>
+<path id="Vector_3" d="M13.2467 11.4133L12.58 10.7467" stroke="var(--stroke-0, #454545)" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<path id="Vector_4" opacity="0" d="M0.5 15.5L0.5 0.5L15.5 0.5L15.5 15.5L0.5 15.5Z" stroke="var(--stroke-0, #454545)"/>
+</g>
+</svg>

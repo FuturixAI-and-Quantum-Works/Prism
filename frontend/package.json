@@ -1,0 +1,56 @@
+{
+  "name": "@prism/frontend",
+  "version": "1.0.0",
+  "description": "Vite app",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" index.html vite.config.js package.json tsconfig.json",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" index.html vite.config.js package.json tsconfig.json",
+    "lint": "eslint src vite.config.js",
+    "preview": "vite preview",
+    "test": "npm run test:unit",
+    "test:unit": "cd .. && vitest run --config vitest.config.mjs --project frontend",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prism/protocol": "*",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@tiptap/core": "^3.23.4",
+    "@tiptap/extension-highlight": "^3.23.4",
+    "@tiptap/extension-link": "^3.23.4",
+    "@tiptap/extension-placeholder": "^3.23.4",
+    "@tiptap/extension-table": "^3.23.4",
+    "@tiptap/extension-text-align": "^3.23.4",
+    "@tiptap/extension-underline": "^3.23.4",
+    "@tiptap/pm": "^3.23.4",
+    "@tiptap/react": "^3.23.4",
+    "@tiptap/starter-kit": "^3.23.4",
+    "@vitejs/plugin-react": "^6.0.1",
+    "better-auth": "1.7.2",
+    "dompurify": "^3.4.14",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-markdown": "^10.1.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.15.0",
+    "vite": "^8.0.11"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.6",
+    "@types/jest-axe": "^3.5.9",
+    "@types/node": "^22.20.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "jest-axe": "^11.0.0",
+    "typescript": "^6.0.3"
+  },
+  "license": "AGPL-3.0-only"
+}

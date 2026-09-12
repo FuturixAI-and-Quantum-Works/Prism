@@ -1,0 +1,7 @@
+ts	phase	decision	why	evidence	result
+2026-09-03T09:13:49Z	frame	Required zero bundled DOCX files and explicit operator input	The 57 tracked files had no redistribution proof	git diff -- backend/Templates backend/sampleTemplates	57 files deleted
+2026-09-03T09:13:49Z	seed	Removed the default DOCX directory and genericized imported records	No bundled directory or legal category can be assumed	backend/src/scripts/seedDocxTemplates.ts	missing input rejected and explicit input validated
+2026-09-03T09:13:49Z	publication	Added machine-readable DOCX provenance checks and banned retired directories	Future tracked DOCX files need enforceable evidence	scripts/check-publication.mjs, docs/template-provenance.json	negative checks rejected both cases
+2026-09-03T09:13:49Z	docs	Removed DOCX from ordinary setup and documented operator import	Core setup now depends only on seven bundled HTML templates	README.md, docs/template-catalog.md, docs/deployment.md	documentation check passed
+2026-09-03T09:18:52Z	verify	Ran focused tests and repository checks	The release predicate needs direct evidence	current session	22 focused tests passed; publication, docs, license, schema, seed, scoped format, and scoped lint passed
+2026-09-03T09:18:52Z	verify	Recorded unrelated repository-wide failures	The requested change must not absorb unrelated work	backend/src/modules/approvals/approvals.service.ts, backend/src/modules/documents/documents.changes.service.ts, e2e/fixtures/mockBackend.ts	format, typecheck, and lint remain blocked outside scope

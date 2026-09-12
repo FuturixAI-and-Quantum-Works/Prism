@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16.5 16.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="elements">
+<path id="Vector" d="M0.750001 7.5C0.750001 4.31802 0.750001 2.72703 1.62868 1.73852C2.50736 0.750002 3.92157 0.750002 6.75 0.750002H9.75C12.5784 0.750002 13.9926 0.750002 14.8713 1.73852C15.75 2.72703 15.75 4.31802 15.75 7.5C15.75 10.682 15.75 12.273 14.8713 13.2615C13.9926 14.25 12.5784 14.25 9.75 14.25H6.75C3.92157 14.25 2.50736 14.25 1.62868 13.2615C0.750001 12.273 0.750001 10.682 0.750001 7.5Z" stroke="var(--stroke-0, #454545)" strokeWidth="1.5" strokeLinecap="round"/>
+<path id="Vector_2" d="M3.75 14.25V15.75M12.75 14.25V15.75" stroke="var(--stroke-0, #454545)" strokeWidth="1.5" strokeLinecap="round"/>
+<path id="Vector_3" d="M8.25 4.5V14.25" stroke="var(--stroke-0, #454545)" strokeWidth="1.5" strokeLinecap="round"/>
+<path id="Vector_4" d="M6 9V9.75" stroke="var(--stroke-0, #454545)" strokeWidth="1.5" strokeLinecap="round"/>
+<path id="Vector_5" d="M10.5 9V9.75" stroke="var(--stroke-0, #454545)" strokeWidth="1.5" strokeLinecap="round"/>
+<path id="Vector_6" d="M0.750001 4.5H15.75" stroke="var(--stroke-0, #454545)" strokeWidth="1.5"/>
+</g>
+</svg>

@@ -1,0 +1,10 @@
+---
+description: Required workflow for implementation, commits, and review
+alwaysApply: true
+---
+
+# Implementation workflow
+
+- Use `/poteto-mode` for every implementation phase.
+- Run `/deslop` before every commit.
+- Run `/no-comments` before every review.

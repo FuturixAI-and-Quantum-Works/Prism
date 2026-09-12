@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="clock">
+<path id="Vector" d="M14.6667 8C14.6667 11.68 11.68 14.6667 8 14.6667C4.32 14.6667 1.33333 11.68 1.33333 8C1.33333 4.32 4.32 1.33333 8 1.33333C11.68 1.33333 14.6667 4.32 14.6667 8Z" stroke="var(--stroke-0, #454545)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path id="Vector_2" d="M10.4733 10.12L8.40667 8.88667C8.04667 8.67333 7.75333 8.16 7.75333 7.74V5.00667" stroke="var(--stroke-0, #454545)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<g id="Vector_3" opacity="0">
+</g>
+</g>
+</svg>

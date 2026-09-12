@@ -1,0 +1,20 @@
+{
+  "name": "@prism/protocol",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" package.json tsconfig.json",
+    "format:check": "prettier --check \"src/**/*.ts\" package.json tsconfig.json",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "AGPL-3.0-only",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

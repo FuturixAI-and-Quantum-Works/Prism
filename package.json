@@ -1,0 +1,80 @@
+{
+  "name": "prism",
+  "version": "1.0.0",
+  "description": "Prism is an open-source legal document assistant.",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": "22.x"
+  },
+  "packageManager": "npm@11.19.0",
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "audit:production": "npm audit --omit=dev",
+    "check:auth-locals": "node scripts/migrate-backend-auth-locals.mjs --check",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:license": "node scripts/check-license-consistency.mjs",
+    "check:orphans": "knip",
+    "check:publication": "node scripts/check-publication.mjs",
+    "ci": "npm run ci:quality && npm run check:docs && npm run ci:test-build && npm run test:e2e:mocked",
+    "ci:postgres": "npm run build --workspace @prism/protocol && npm run build --workspace @prism/backend && tsx --test --test-concurrency=1 backend/test/integration/postgres-publication.test.ts",
+    "ci:quality": "npm run check:publication && npm run check:license && npm run check:auth-locals && npm run check:orphans && npm run db:verify && npm run seed:validate && npm run format:check && npm run lint && npm run typecheck",
+    "ci:test-build": "npm run test && npm run audit:production && npm run build",
+    "db:verify": "npm run db:verify --workspace @prism/backend",
+    "dev": "concurrently --names \"backend,worker,frontend\" --prefix-colors \"cyan,yellow,magenta\" \"npm run dev --workspace @prism/backend\" \"npm run dev:worker --workspace @prism/backend\" \"npm run dev --workspace @prism/frontend\"",
+    "dev:backend": "npm run dev --workspace @prism/backend",
+    "dev:worker": "npm run dev:worker --workspace @prism/backend",
+    "dev:frontend": "npm run dev --workspace @prism/frontend",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "generate:auth-schema": "auth generate",
+    "lint": "eslint . --max-warnings=0 --ignore-pattern playwright-report --ignore-pattern test-results",
+    "seed:validate": "npm run seed:validate --workspace @prism/backend",
+    "test": "npm run test:security && npm run test:document-formats && npm run test:unit",
+    "test:document-formats": "npm run test:document-formats --workspace @prism/backend",
+    "test:e2e:mocked": "playwright test --config=playwright.config.ts",
+    "test:jobs": "npm run test:jobs --workspace @prism/backend",
+    "test:security": "npm run test:security --workspace @prism/backend",
+    "test:unit": "vitest run --config vitest.config.mjs",
+    "worker": "npm run start:worker --workspace @prism/backend",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FuturixAI-and-Quantum-Works/Prism.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "AGPL-3.0-only",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/FuturixAI-and-Quantum-Works/Prism/issues"
+  },
+  "homepage": "https://github.com/FuturixAI-and-Quantum-Works/Prism#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.62.1",
+    "@vitest/coverage-v8": "^4.1.11",
+    "auth": "1.7.2",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.9.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.5",
+    "globals": "^17.12.0",
+    "jsdom": "^30.0.1",
+    "knip": "6.34.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.13",
+    "typescript-eslint": "^8.69.0",
+    "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "esbuild": "0.25.12",
+    "qs": "6.16.0"
+  }
+}

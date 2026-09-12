@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 2085665540">
+<path id="Star 3" d="M1.84261 0.637533C1.88319 0.47319 2.11682 0.47319 2.15739 0.637533C2.3041 1.23186 2.76814 1.6959 3.36247 1.84261C3.52681 1.88319 3.52681 2.11682 3.36247 2.15739C2.76814 2.3041 2.3041 2.76814 2.15739 3.36247C2.11682 3.52681 1.88319 3.52681 1.84261 3.36247C1.6959 2.76814 1.23186 2.3041 0.637533 2.15739C0.47319 2.11682 0.47319 1.88319 0.637533 1.84261C1.23186 1.6959 1.6959 1.23186 1.84261 0.637533Z" fill="url(#paint0_linear_0_75)"/>
+<path id="Star 2" d="M6.44915 2.23137C6.59115 1.65617 7.40885 1.65617 7.55085 2.23137C8.06437 4.3115 9.6885 5.93563 11.7686 6.44915C12.3438 6.59115 12.3438 7.40885 11.7686 7.55085C9.6885 8.06437 8.06437 9.6885 7.55085 11.7686C7.40885 12.3438 6.59115 12.3438 6.44915 11.7686C5.93563 9.6885 4.3115 8.06437 2.23137 7.55085C1.65617 7.40885 1.65617 6.59115 2.23137 6.44915C4.3115 5.93563 5.93563 4.3115 6.44915 2.23137Z" fill="url(#paint1_linear_0_75)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_75" x1="1.94626" y1="4" x2="2.05374" y2="5.68291e-08" gradientUnits="userSpaceOnUse">
+<stop stop-color="#129FF6"/>
+<stop offset="0.442308" stop-color="#A4DCFF"/>
+<stop offset="0.951923" stop-color="#AE98FF"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_75" x1="6.8119" y1="14" x2="7.1881" y2="1.98902e-07" gradientUnits="userSpaceOnUse">
+<stop stop-color="#129FF6"/>
+<stop offset="0.442308" stop-color="#A4DCFF"/>
+<stop offset="0.951923" stop-color="#AE98FF"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,148 @@
+name: prism-local
+
+x-backend-environment: &backend-environment
+  NODE_ENV: development
+  PORT: "8003"
+  DATABASE_URL: postgresql://prism:${POSTGRES_PASSWORD:-prism-local-db}@postgres:5432/prism
+  BETTER_AUTH_URL: http://localhost:${BACKEND_PORT:-8003}
+  FRONTEND_URL: http://localhost:${FRONTEND_PORT:-8080}
+  PUBLIC_API_URL: http://localhost:${BACKEND_PORT:-8003}
+  CORS_ALLOWED_ORIGINS: http://localhost:${FRONTEND_PORT:-8080}
+  TRUST_PROXY_HOPS: "0"
+  BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-local-ba-Q7m2Vx9Kp4Rc8Tw6Hn3Yf5Ld}
+  AUTH_OTP_SECRET: ${AUTH_OTP_SECRET:-local-otp-N8q4Zj7Ms2Wc9Rx5Gt6Kv3Pb}
+  DOWNLOAD_SIGNING_SECRET: ${DOWNLOAD_SIGNING_SECRET:-local-dl-F6w9Jq3Nz8Vc2Kr7Xm4Tp5Hs}
+  AI_CREDENTIAL_ACTIVE_KEY_ID: local-v1
+  AI_CREDENTIAL_ENCRYPTION_KEYS: '{"local-v1":"${AI_CREDENTIAL_ENCRYPTION_KEY:-local-ai-C9r5Xm2Kv8Qp4Nz7Wd6Tj3Fs}"}'
+  STORAGE_PROVIDER: local
+  LOCAL_STORAGE_PATH: /app/data
+  MAIL_PROVIDER: smtp
+  SMTP_HOST: mailpit
+  SMTP_PORT: "1025"
+  SMTP_SECURE: "false"
+  MAIL_FROM: no-reply@prism.localhost
+  QDRANT_URL: ${QDRANT_URL:-}
+  QDRANT_API_KEY: ${QDRANT_API_KEY:-}
+
+x-backend-service: &backend-service
+  image: prism-backend:local
+  build:
+    context: .
+    dockerfile: backend/Dockerfile
+  environment: *backend-environment
+  volumes:
+    - prism_storage:/app/data
+  shm_size: 1gb
+  restart: unless-stopped
+  stop_grace_period: 20s
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: prism
+      POSTGRES_USER: prism
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-prism-local-db}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 5s
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  mailpit:
+    image: axllent/mailpit:v1.27
+    environment:
+      MP_MAX_MESSAGES: "500"
+    ports:
+      - "127.0.0.1:${MAILPIT_SMTP_PORT:-1025}:1025"
+      - "127.0.0.1:${MAILPIT_UI_PORT:-8025}:8025"
+    healthcheck:
+      test: ["CMD", "/mailpit", "readyz"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 5s
+    restart: unless-stopped
+
+  backend:
+    <<: *backend-service
+    command: ["/bin/sh", "-c", "node dist/scripts/migrate.js && exec node dist/index.js"]
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8003}:8003"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mailpit:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8003/health').then(async r=>{if(!r.ok||!(await r.json()).ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  worker:
+    <<: *backend-service
+    command: ["node", "dist/worker.js"]
+    environment:
+      <<: *backend-environment
+      HEALTHCHECK_API_URL: http://backend:8003/health
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mailpit:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f '^node dist/worker[.]js$$' >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+  frontend:
+    image: prism-frontend:local
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:${BACKEND_PORT:-8003}
+    environment:
+      PORT: "8080"
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-8080}:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 5s
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    stop_grace_period: 10s
+
+volumes:
+  postgres_data:
+  prism_storage:

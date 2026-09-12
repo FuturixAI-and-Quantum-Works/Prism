@@ -1,0 +1,204 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes prism-background-chat-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes prism-background-chat-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes prism-background-chat-bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes prism-pending-process-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prism-pending-process-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.prism-background-chat-indicator,
+.prism-background-chat-toast {
+  animation: prism-background-chat-slide-in 0.3s ease-out;
+}
+
+.prism-background-chat-icon--streaming {
+  animation: prism-background-chat-pulse 1.5s ease-in-out infinite;
+}
+
+.prism-background-chat-icon--complete {
+  animation: prism-background-chat-bounce 0.5s ease;
+}
+
+.prism-pending-process-indicator {
+  animation: prism-pending-process-slide-in 0.3s ease-out;
+}
+
+.prism-pending-process-spinner {
+  animation: prism-pending-process-spin 1s linear infinite;
+}
+
+:root {
+  --heading-size: 32px;
+  --heading-line-height: 32px;
+  --subheading-size: 14px;
+  --card-width: 520px;
+  --card-padding: 28px 24px;
+  --card-heading-size: 24px;
+  --card-heading-line-height: 27px;
+  --content-gap: 24px;
+  --footer-bottom: 40px;
+  --otp-box-size: 60px;
+  --otp-gap: 7px;
+  --otp-font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --heading-size: 26px;
+    --heading-line-height: 28px;
+    --subheading-size: 13px;
+    --card-width: 90%;
+    --card-padding: 24px 20px;
+    --card-heading-size: 20px;
+    --card-heading-line-height: 24px;
+    --content-gap: 20px;
+    --footer-bottom: 24px;
+    --otp-box-size: 50px;
+    --otp-gap: 6px;
+    --otp-font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --heading-size: 22px;
+    --heading-line-height: 26px;
+    --subheading-size: 12px;
+    --card-width: 94%;
+    --card-padding: 20px 16px;
+    --card-heading-size: 18px;
+    --card-heading-line-height: 22px;
+    --content-gap: 16px;
+    --footer-bottom: 16px;
+    --otp-box-size: 50px;
+    --otp-gap: 5px;
+    --otp-font-size: 18px;
+  }
+}
+
+input::placeholder {
+  color: #999999;
+  font-weight: 510;
+  letter-spacing: 0.3px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #737373;
+  background-clip: content-box;
+  border: 2px solid transparent;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #525252;
+}
+
+* {
+  scrollbar-color: #737373 transparent;
+  scrollbar-width: thin;
+}
+
+.prism-uptime-segment:focus-visible {
+  outline: 2px solid #272727;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .prism-background-chat-indicator,
+  .prism-background-chat-toast,
+  .prism-background-chat-icon--streaming,
+  .prism-background-chat-icon--complete,
+  .prism-pending-process-indicator,
+  .prism-pending-process-spinner {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  * {
+    scrollbar-color: auto;
+  }
+}

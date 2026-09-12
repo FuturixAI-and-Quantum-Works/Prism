@@ -1,0 +1,284 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
+version: "1"
+
+previews:
+  generation: "off"
+
+services:
+  - type: web
+    name: futurixai-prism-backend
+    runtime: docker
+    region: oregon
+    plan: starter
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    dockerCommand: node dist/index.js
+    preDeployCommand: node dist/scripts/migrate.js
+    healthCheckPath: /health
+    maxShutdownDelaySeconds: 30
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: futurixai-prism-postgres
+          property: connectionString
+      - key: BETTER_AUTH_URL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: SHUTDOWN_TIMEOUT_MS
+        value: "25000"
+      - key: BETTER_AUTH_SECRET
+        generateValue: true
+      - key: AUTH_OTP_SECRET
+        generateValue: true
+      - key: DOWNLOAD_SIGNING_SECRET
+        generateValue: true
+      - key: STORAGE_PROVIDER
+        value: s3
+      - key: OBJECT_STORE_ENDPOINT
+        sync: false
+      - key: OBJECT_STORE_REGION
+        sync: false
+      - key: OBJECT_STORE_BUCKET
+        sync: false
+      - key: OBJECT_STORE_ACCESS_KEY_ID
+        sync: false
+      - key: OBJECT_STORE_SECRET_ACCESS_KEY
+        sync: false
+      - key: OBJECT_STORE_FORCE_PATH_STYLE
+        sync: false
+      - key: AI_CREDENTIAL_ACTIVE_KEY_ID
+        sync: false
+      - key: AI_CREDENTIAL_ENCRYPTION_KEYS
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: MAIL_PROVIDER
+        value: resend
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: EMAIL_REPLY_TO
+        sync: false
+      - key: EMAIL_DISPLAY_NAME
+        value: Prism Legal
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GOOGLE_GENERATIVE_AI_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+
+  - type: worker
+    name: futurixai-prism-worker
+    runtime: docker
+    region: oregon
+    plan: starter
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    dockerCommand: node dist/worker.js
+    maxShutdownDelaySeconds: 30
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: futurixai-prism-postgres
+          property: connectionString
+      - key: BETTER_AUTH_URL
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: BETTER_AUTH_URL
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: FRONTEND_URL
+      - key: CORS_ALLOWED_ORIGINS
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: CORS_ALLOWED_ORIGINS
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: SHUTDOWN_TIMEOUT_MS
+        value: "25000"
+      - key: WORKER_SHUTDOWN_TIMEOUT_MS
+        value: "25000"
+      - key: BETTER_AUTH_SECRET
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: BETTER_AUTH_SECRET
+      - key: AUTH_OTP_SECRET
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: AUTH_OTP_SECRET
+      - key: DOWNLOAD_SIGNING_SECRET
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: DOWNLOAD_SIGNING_SECRET
+      - key: STORAGE_PROVIDER
+        value: s3
+      - key: OBJECT_STORE_ENDPOINT
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: OBJECT_STORE_ENDPOINT
+      - key: OBJECT_STORE_REGION
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: OBJECT_STORE_REGION
+      - key: OBJECT_STORE_BUCKET
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: OBJECT_STORE_BUCKET
+      - key: OBJECT_STORE_ACCESS_KEY_ID
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: OBJECT_STORE_ACCESS_KEY_ID
+      - key: OBJECT_STORE_SECRET_ACCESS_KEY
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: OBJECT_STORE_SECRET_ACCESS_KEY
+      - key: OBJECT_STORE_FORCE_PATH_STYLE
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: OBJECT_STORE_FORCE_PATH_STYLE
+      - key: AI_CREDENTIAL_ACTIVE_KEY_ID
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: AI_CREDENTIAL_ACTIVE_KEY_ID
+      - key: AI_CREDENTIAL_ENCRYPTION_KEYS
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: AI_CREDENTIAL_ENCRYPTION_KEYS
+      - key: GOOGLE_CLIENT_ID
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: GOOGLE_CLIENT_ID
+      - key: GOOGLE_CLIENT_SECRET
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: GOOGLE_CLIENT_SECRET
+      - key: MAIL_PROVIDER
+        value: resend
+      - key: RESEND_API_KEY
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: RESEND_API_KEY
+      - key: MAIL_FROM
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: MAIL_FROM
+      - key: EMAIL_REPLY_TO
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: EMAIL_REPLY_TO
+      - key: EMAIL_DISPLAY_NAME
+        value: Prism Legal
+      - key: ANTHROPIC_API_KEY
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: ANTHROPIC_API_KEY
+      - key: OPENAI_API_KEY
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: OPENAI_API_KEY
+      - key: GOOGLE_GENERATIVE_AI_API_KEY
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: GOOGLE_GENERATIVE_AI_API_KEY
+      - key: QDRANT_URL
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: QDRANT_URL
+      - key: QDRANT_API_KEY
+        fromService:
+          type: web
+          name: futurixai-prism-backend
+          envVarKey: QDRANT_API_KEY
+
+  - type: web
+    name: futurixai-prism-frontend
+    runtime: static
+    buildCommand: npm ci && npm run build --workspace @prism/frontend
+    staticPublishPath: ./frontend/dist
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
+      - key: VITE_API_BASE_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: Content-Security-Policy
+        value: "base-uri 'self'; frame-ancestors 'none'; object-src 'none'"
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=31536000; includeSubDomains
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
+
+databases:
+  - name: futurixai-prism-postgres
+    databaseName: prism
+    user: prism
+    region: oregon
+    plan: basic-256mb
+    postgresMajorVersion: "16"
+    ipAllowList: []

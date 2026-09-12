@@ -1,0 +1,6 @@
+.env*
+!.env.example
+dist
+node_modules
+.claude
+src/server
