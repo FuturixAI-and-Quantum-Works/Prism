@@ -1,8 +1,55 @@
-# Prism
+<p align="center">
+  <a href="https://www.futurixai.com/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/futurixai-wordmark-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="docs/assets/futurixai-wordmark-light.svg">
+      <img src="docs/assets/futurixai-wordmark-light.svg" alt="FuturixAI" height="42">
+    </picture>
+  </a>
+</p>
 
-Prism is an AGPL-licensed workspace for drafting, reviewing, sharing, and managing legal documents. Luna is the AI assistant inside Prism. The browser application uses React and Vite. The API uses Express, Better Auth, PostgreSQL, and Drizzle ORM.
+<h1 align="center">Prism</h1>
+
+<p align="center"><strong>Contract litigation management system</strong></p>
+
+<p align="center">
+  A unified workspace for contract disputes, legal documents, review workflows,<br>
+  approvals, source-backed research, and auditable collaboration.
+</p>
+
+<p align="center">
+  <a href="https://github.com/FuturixAI-and-Quantum-Works/Prism/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/FuturixAI-and-Quantum-Works/Prism/ci.yml?branch=main&amp;style=flat-square&amp;label=CI&amp;logo=githubactions"></a>
+  <a href="LICENSE"><img alt="AGPL-3.0-only license" src="https://img.shields.io/badge/license-AGPL--3.0--only-6e56cf?style=flat-square"></a>
+  <img alt="Node.js 22" src="https://img.shields.io/badge/Node.js-22-339933?style=flat-square&amp;logo=nodedotjs&amp;logoColor=white">
+  <img alt="PostgreSQL 16" src="https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat-square&amp;logo=postgresql&amp;logoColor=white">
+</p>
+
+<p align="center">
+  <a href="#start-prism-locally">Quick start</a> ·
+  <a href="./ARCHITECTURE.md">Architecture</a> ·
+  <a href="docs/deployment.md">Deployment</a> ·
+  <a href="mailto:connect@futurixai.com">Enterprise</a>
+</p>
+
+---
+
+Prism is an open-source contract litigation management system for drafting, reviewing, sharing, and managing legal work. Luna is the AI assistant inside Prism. The browser application uses React and Vite. The API uses Express, Better Auth, PostgreSQL, and Drizzle ORM.
 
 > Prism and its bundled templates do not provide legal advice. Generated text can be wrong, incomplete, or unsuitable for a jurisdiction. A qualified lawyer must review every document before anyone relies on it.
+
+## Built for contract litigation
+
+- ⚖️ **Matters and collaboration** — Organize projects, matters, folders, participants, and access in one workspace.
+- 📝 **Drafting and comparison** — Create, edit, compare, version, export, and share legal documents.
+- 🔎 **Source-backed intelligence** — Index document sources and use retrieval-backed assistance without losing the underlying evidence.
+- ✅ **Approvals and compliance** — Coordinate review policies, approval flows, rulebooks, compliance runs, and tabular reviews.
+- 🤝 **Controlled collaboration** — Invite participants, assign roles, and keep work scoped to the right people.
+- 🛡️ **Deployment control** — Self-host with PostgreSQL, S3-compatible storage, and optional Qdrant-backed retrieval.
+
+> [!IMPORTANT]
+> **Enterprise deployments**
+>
+> For private infrastructure, custom integrations, migration support, or managed rollouts, contact [connect@futurixai.com](mailto:connect@futurixai.com).
 
 ## What runs
 
