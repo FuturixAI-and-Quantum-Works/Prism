@@ -11,9 +11,16 @@ import {
 import { storageEnabled, uploadFile } from "../lib/storage.js";
 import { withScriptApplication } from "./database.js";
 
+export interface DocxTemplateImport {
+  key: string;
+  category: string;
+  sourceLabel: string;
+}
+
 export const DOCX_TEMPLATE_IMPORT = {
   key: "operator",
   category: "Operator DOCX Templates",
+  sourceLabel: "Operator-supplied",
 } as const;
 
 function toPosixPath(value: string): string {
@@ -31,9 +38,13 @@ function displayNameFromFilename(filename: string): string {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-function descriptionFor(filename: string, analysis: DocxTemplateAnalysis): string {
+function descriptionFor(
+  filename: string,
+  analysis: DocxTemplateAnalysis,
+  templateImport: DocxTemplateImport,
+): string {
   return [
-    `Operator-supplied DOCX template imported from ${filename}.`,
+    `${templateImport.sourceLabel} DOCX template imported from ${filename}.`,
     `${analysis.metadata.placeholders.unique} placeholders, ${analysis.metadata.document.tables} tables.`,
     "Final document generation preserves the original Word formatting.",
   ].join(" ");
@@ -53,7 +64,12 @@ async function maybeUploadSource(
   return storagePath;
 }
 
-async function prepareFile(fullPath: string, rootDir: string, uploadSource: boolean) {
+async function prepareFile(
+  fullPath: string,
+  rootDir: string,
+  uploadSource: boolean,
+  templateImport: DocxTemplateImport,
+) {
   const filename = path.basename(fullPath);
   const relativePath = toPosixPath(path.relative(process.cwd(), fullPath));
   const buffer = await fs.readFile(fullPath);
@@ -71,15 +87,15 @@ async function prepareFile(fullPath: string, rootDir: string, uploadSource: bool
   };
 
   return {
-    stableKey: `docx-${DOCX_TEMPLATE_IMPORT.key}-${filename
+    stableKey: `docx-${templateImport.key}-${filename
       .toLowerCase()
       .replace(/\.docx$/, "")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-|-$/g, "")}`,
     userId: null,
     name,
-    category: DOCX_TEMPLATE_IMPORT.category,
-    description: descriptionFor(filename, analysis),
+    category: templateImport.category,
+    description: descriptionFor(filename, analysis, templateImport),
     contentHtml: analysis.previewHtml,
     fields: analysis.fields,
     sourceFilename: filename,
@@ -92,7 +108,11 @@ async function prepareFile(fullPath: string, rootDir: string, uploadSource: bool
   } as const;
 }
 
-export async function validateDocxTemplatePack(requestedDir: string): Promise<number> {
+async function prepareDocxTemplatePack(
+  requestedDir: string,
+  templateImport: DocxTemplateImport,
+  uploadSource: boolean,
+) {
   const rootDir = path.resolve(process.cwd(), requestedDir);
   const entries = await fs.readdir(rootDir, { withFileTypes: true });
   const files = entries
@@ -100,24 +120,35 @@ export async function validateDocxTemplatePack(requestedDir: string): Promise<nu
     .map((entry) => path.join(rootDir, entry.name))
     .sort((left, right) => left.localeCompare(right));
 
-  const prepared = await Promise.all(files.map((file) => prepareFile(file, rootDir, false)));
+  const prepared: Awaited<ReturnType<typeof prepareFile>>[] = [];
+  for (const file of files) {
+    prepared.push(await prepareFile(file, rootDir, uploadSource, templateImport));
+  }
   if (new Set(prepared.map(({ stableKey }) => stableKey)).size !== prepared.length) {
     throw new Error(`DOCX template pack ${requestedDir} contains duplicate stable keys`);
   }
-  return prepared.length;
+  return prepared;
 }
 
-export async function seedDocxTemplates(requestedDir: string): Promise<number> {
-  const rootDir = path.resolve(process.cwd(), requestedDir);
-  const entries = await fs.readdir(rootDir, { withFileTypes: true });
-  const files = entries
-    .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith(".docx"))
-    .map((entry) => path.join(rootDir, entry.name))
-    .sort((left, right) => left.localeCompare(right));
-  const prepared: Awaited<ReturnType<typeof prepareFile>>[] = [];
-  for (const file of files) {
-    prepared.push(await prepareFile(file, rootDir, true));
-  }
+export async function loadDocxTemplatePack(
+  requestedDir: string,
+  templateImport: DocxTemplateImport = DOCX_TEMPLATE_IMPORT,
+) {
+  return prepareDocxTemplatePack(requestedDir, templateImport, false);
+}
+
+export async function validateDocxTemplatePack(
+  requestedDir: string,
+  templateImport: DocxTemplateImport = DOCX_TEMPLATE_IMPORT,
+): Promise<number> {
+  return (await loadDocxTemplatePack(requestedDir, templateImport)).length;
+}
+
+export async function seedDocxTemplates(
+  requestedDir: string,
+  templateImport: DocxTemplateImport = DOCX_TEMPLATE_IMPORT,
+): Promise<number> {
+  const prepared = await prepareDocxTemplatePack(requestedDir, templateImport, true);
 
   await db.transaction(async (transaction) => {
     for (const values of prepared) {

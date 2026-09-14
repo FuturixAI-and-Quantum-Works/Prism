@@ -3,6 +3,7 @@ import { execFileSync } from "node:child_process";
 import { dirname, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { checkEnvironmentExamples } from "./check-env-examples.mjs";
+import { contentForLegacyBranding } from "./publication-template-provenance.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const excludedDirectories = new Set([
@@ -122,9 +123,13 @@ const staleProvenance = [...provenancePaths].filter(
   (path) => path !== "<missing path>" && !trackedDocx.includes(path),
 );
 
-function matchingFiles(pattern, ignored = () => false) {
+function matchingFiles(
+  pattern,
+  ignored = () => false,
+  scannedContent = (_path, content) => content,
+) {
   return [...contents]
-    .filter(([path, content]) => !ignored(path) && pattern.test(content))
+    .filter(([path, content]) => !ignored(path) && pattern.test(scannedContent(path, content)))
     .map(([path]) => relative(root, path));
 }
 
@@ -132,7 +137,17 @@ const blockers = [
   {
     id: "legacy-branding",
     message: "Legacy product or company branding remains",
-    evidence: matchingFiles(/\b(?:legalbe|legalclonebe|legality|zerodesk)\b/i),
+    evidence: matchingFiles(
+      /\b(?:legalbe|legalclonebe|legality|zerodesk)\b/i,
+      () => false,
+      (path, content) =>
+        contentForLegacyBranding(
+          root,
+          relative(root, path),
+          content,
+          "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/",
+        ),
+    ),
   },
   {
     id: "personal-address",

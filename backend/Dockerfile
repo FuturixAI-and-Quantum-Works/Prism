@@ -64,6 +64,9 @@ COPY --from=production-dependencies --chown=node:node /app/node_modules ./node_m
 COPY --from=production-dependencies --chown=node:node /app/backend ./backend
 COPY --from=build --chown=node:node /app/backend/dist ./backend/dist
 COPY --chown=node:node backend/drizzle ./backend/drizzle
+COPY --chown=node:node backend/data/seed-packs ./backend/data/seed-packs
+COPY --chown=node:node LICENSE ./LICENSE
+COPY --chown=node:node docs/template-license.md docs/template-provenance.json ./docs/
 COPY --from=build --chown=node:node /app/packages/protocol/package.json ./packages/protocol/package.json
 COPY --from=build --chown=node:node /app/packages/protocol/dist ./packages/protocol/dist
 

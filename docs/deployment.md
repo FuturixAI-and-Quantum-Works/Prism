@@ -34,15 +34,16 @@ docker compose exec backend node dist/scripts/seedWorkflows.js
 docker compose exec backend node dist/scripts/seedAiCatalog.js
 ```
 
-The production backend image does not contain the HTML template source files or TypeScript seed tooling. Copy the tracked HTML inputs into the running local container, then run the compiled seed script:
+The backend image includes the bundled template inputs and compiled seed scripts. Seed all 61 templates:
 
 ```sh
-docker compose exec backend mkdir -p data
-docker compose cp backend/data/. backend:/app/backend/data/
 docker compose exec backend node dist/scripts/seedTemplates.js
+docker compose exec backend node dist/scripts/seedBundledDocxTemplates.js
 ```
 
-Prism does not bundle DOCX templates. To import licensed or operator-owned DOCX files, copy them into a temporary operator directory and pass that directory explicitly:
+The commands seed seven HTML templates and 54 DOCX templates. They can be rerun without creating duplicate system templates. See the [template catalog](template-catalog.md) for the inventory and license.
+
+To import additional licensed or operator-owned DOCX files, copy them into a temporary operator directory and pass that directory explicitly:
 
 ```sh
 docker compose exec backend mkdir -p operator-docx
@@ -50,7 +51,7 @@ docker compose cp /absolute/path/to/licensed-docx/. backend:/app/backend/operato
 docker compose exec backend node dist/scripts/seedDocxTemplates.js operator-docx
 ```
 
-The DOCX seed writes its source objects to the persistent `prism_storage` volume. The copied input directory is ephemeral.
+Both DOCX seeds write source objects to the persistent `prism_storage` volume. A copied operator input directory is ephemeral.
 
 Stop the stack without deleting data:
 
@@ -67,13 +68,15 @@ Use `docker compose down -v` only when you intend to delete both named volumes.
 3. Enter every secret marked `sync: false` before the first deploy.
 4. Wait for the PostgreSQL database, backend, worker, and static frontend to deploy.
 5. Confirm `GET /health` on the backend.
-6. Seed core records from a backend shell.
+6. Seed core records and the bundled templates from a backend shell, with the required object-store configuration in place.
 
    ```sh
    cd ..
    node backend/dist/scripts/seedApprovalPolicies.js
    node backend/dist/scripts/seedWorkflows.js
    node backend/dist/scripts/seedAiCatalog.js
+   node backend/dist/scripts/seedTemplates.js
+   node backend/dist/scripts/seedBundledDocxTemplates.js
    ```
 
 7. Sign in, send an OTP, upload a synthetic document, and test an AI connection if one is configured.
@@ -138,19 +141,30 @@ Redeploy the frontend after changing `VITE_API_BASE_URL`. Restart both backend p
 
 ## How-to: seed templates on a hosted database
 
-The current runtime image omits template source files. Use a trusted checkout with Node dependencies and network access to the hosted PostgreSQL database and object store.
+The runtime image includes both bundled template packs. From a backend container shell, after migrations and with production database, application-secret, and S3-compatible object-store configuration in place, run:
+
+```sh
+cd ..
+node backend/dist/scripts/seedTemplates.js
+node backend/dist/scripts/seedBundledDocxTemplates.js
+```
+
+The shell starts in the container's `/app/backend` working directory; `cd ..` selects `/app`. The commands seed seven HTML templates and 54 DOCX templates. DOCX sources are uploaded to the configured object store; the image's bundled input files are not a substitute for persistent document storage.
+
+Alternatively, use a trusted checkout with Node dependencies and network access to the hosted PostgreSQL database and object store:
 
 1. Set the production `DATABASE_URL`, application secrets, object-store variables, and `NODE_ENV=production`.
 2. Run the seed commands.
 
    ```sh
    npm run seed:templates --workspace @prism/backend
+   npm run seed:bundled-docx --workspace @prism/backend
    ```
 
 3. Remove temporary database network access.
 4. Confirm the expected templates in the application.
 
-To add DOCX templates, follow [Import operator-owned DOCX templates](template-catalog.md#import-operator-owned-docx-templates) and pass the licensed directory to `seed:docx-templates`.
+To add further DOCX templates, follow [Import operator-owned DOCX templates](template-catalog.md#import-operator-owned-docx-templates) and pass the licensed directory to `seed:docx-templates`.
 
 Do not put production secrets in shell history or repository files. If policy forbids a workstation connection, create a short-lived private seeding job from a reviewed image that includes only the required seed inputs.
 

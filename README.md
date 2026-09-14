@@ -8,7 +8,7 @@
   </a>
 </h1>
 
-<p align="center"><strong>Contract litigation management system</strong></p>
+<p align="center"><strong>Draft, review, and approve legal documents in one AI-powered workspace.</strong></p>
 
 <p align="center">
   A unified workspace for contract disputes, legal documents, review workflows,<br>
@@ -23,6 +23,7 @@
 </p>
 
 <p align="center">
+  <a href="#features">Features</a> ·
   <a href="#start-prism-locally">Quick start</a> ·
   <a href="./ARCHITECTURE.md">Architecture</a> ·
   <a href="docs/deployment.md">Deployment</a> ·
@@ -41,14 +42,22 @@ Create, compare, and summarize documents from one focused workspace.
 
 ![Prism Assistant showing document creation, comparison, and summarization actions](docs/assets/screenshots/prism-assistant.jpg)
 
-## Built for contract litigation
+## Features
 
-- ⚖️ **Matters and collaboration** — Organize projects, matters, folders, participants, and access in one workspace.
-- 📝 **Drafting and comparison** — Create, edit, compare, version, export, and share legal documents.
-- 🔎 **Source-backed intelligence** — Index document sources and use retrieval-backed assistance without losing the underlying evidence.
-- ✅ **Approvals and compliance** — Coordinate review policies, approval flows, rulebooks, compliance runs, and tabular reviews.
-- 🤝 **Controlled collaboration** — Invite participants, assign roles, and keep work scoped to the right people.
-- 🛡️ **Deployment control** — Self-host with PostgreSQL, S3-compatible storage, and optional Qdrant-backed retrieval.
+Start with a template or a request to Luna, bring your documents into a shared workspace, and move drafts through review and approval. Explore the [feature guide](./features/README.md) for workflows, examples, and setup requirements.
+
+| Feature                                                                             | What you can do                                                                                                       |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [AI-powered drafting and document assistance](./features/ai-drafting/README.md)     | Draft and refine legal documents with Luna, ask questions about your files, and inspect supporting source references. |
+| [61 contract and legal-document templates](./features/contract-templates/README.md) | Start from 54 Word and seven HTML templates, fill guided fields, and create an editable document.                     |
+| [AI-assisted contract review](./features/contract-review/README.md)                 | Assess documents against defined checks and inspect potential issues with supporting context.                         |
+| [Multi-document tabular review](./features/tabular-review/README.md)                | Extract key terms across documents into a configurable review table.                                                  |
+| [Custom review playbooks](./features/review-playbooks/README.md)                    | Create reusable rulebooks to keep your team's review criteria consistent.                                             |
+| [Document editing and version history](./features/document-editor/README.md)        | Edit drafts, save numbered versions, and export Word or PDF documents.                                                |
+| [Collaborative review and approvals](./features/review-and-approvals/README.md)     | Discuss clauses, resolve comments, approve or reject drafts, and follow activity history.                             |
+| [Shared legal workspaces](./features/workspaces/README.md)                          | Organize primary and supporting documents and invite collaborators with role-based access.                            |
+
+AI features require a configured provider. Indexed source retrieval also requires Qdrant, and background analysis requires the worker. Each feature guide explains its prerequisites. AI output and templates need qualified legal review before use.
 
 > [!IMPORTANT]
 > **Enterprise deployments**
@@ -177,9 +186,12 @@ Seed application records:
 ```sh
 npm run seed:core --workspace @prism/backend
 npm run seed:templates --workspace @prism/backend
+npm run seed:bundled-docx --workspace @prism/backend
 ```
 
-`seed:core` installs approval policies, workflows, and the AI model catalog. `seed:templates` installs seven HTML templates. Prism does not bundle DOCX templates. To import licensed or operator-owned DOCX files, follow the [template catalog](docs/template-catalog.md#import-operator-owned-docx-templates).
+`seed:core` installs approval policies, workflows, and the AI model catalog. `seed:templates` installs seven HTML templates; `seed:bundled-docx` imports 54 DOCX templates, for **61 bundled templates** in total. The DOCX seed needs working document storage; the local setup above uses the development filesystem default. Both template seeds can be rerun without creating duplicate system templates.
+
+See the [template catalog](docs/template-catalog.md) for the inventory, validation commands, and additional licensed imports.
 
 The baseline at [`backend/drizzle/0000_prism_baseline.sql`](backend/drizzle/0000_prism_baseline.sql) is for a new database. Do not apply it over a private database created before the baseline. Use the [pre-baseline database migration guide](docs/pre-baseline-database-migration.md).
 
@@ -270,11 +282,40 @@ The full sequence verifies the publication rules, authentication migration guard
 ### Reference
 
 - [Template packs, jurisdictions, and licensing](docs/template-catalog.md).
+- [Bundled DOCX license and redistribution permission](docs/template-license.md).
 - [Frontend design system](./frontend/DESIGN_SYSTEM.md).
 
 ### Explanation
 
 - [Prism architecture](./ARCHITECTURE.md).
+
+## 💪 Thanks to our Contributors
+
+See our contributors list in [CONTRIBUTORS.md](./CONTRIBUTORS.md). You can also view the full list of [contributors tracked by GitHub](https://github.com/FuturixAI-and-Quantum-Works/Prism/graphs/contributors).
+
+<p>
+  <a href="https://github.com/Absk-tiwari" title="Abhishek Tiwari (@Absk-tiwari)">
+    <img src="docs/assets/contributors/Absk-tiwari.png" width="80" height="80" alt="Abhishek Tiwari (@Absk-tiwari)">
+  </a>
+  <a href="https://github.com/Aqua-123" title="Aqua (@Aqua-123)">
+    <img src="docs/assets/contributors/Aqua-123.png" width="80" height="80" alt="Aqua (@Aqua-123)">
+  </a>
+  <a href="https://github.com/Hloabhi" title="Abhishek Singh (@Hloabhi)">
+    <img src="docs/assets/contributors/Hloabhi.png" width="80" height="80" alt="Abhishek Singh (@Hloabhi)">
+  </a>
+  <a href="https://github.com/Pratoosh-18" title="Pratoosh Garg (@Pratoosh-18)">
+    <img src="docs/assets/contributors/Pratoosh-18.png" width="80" height="80" alt="Pratoosh Garg (@Pratoosh-18)">
+  </a>
+  <a href="https://github.com/rudransh2004" title="Rudransh Agnihotri (@rudransh2004)">
+    <img src="docs/assets/contributors/rudransh2004.png" width="80" height="80" alt="Rudransh Agnihotri (@rudransh2004)">
+  </a>
+  <a href="https://github.com/UjjwalPasahan" title="Ujjwal Pasahan (@UjjwalPasahan)">
+    <img src="docs/assets/contributors/UjjwalPasahan.png" width="80" height="80" alt="Ujjwal Pasahan (@UjjwalPasahan)">
+  </a>
+  <a href="https://github.com/YashDuhan" title="Yash Duhan (@YashDuhan)">
+    <img src="docs/assets/contributors/YashDuhan.png" width="80" height="80" alt="Yash Duhan (@YashDuhan)">
+  </a>
+</p>
 
 ## License and hosted modifications
 

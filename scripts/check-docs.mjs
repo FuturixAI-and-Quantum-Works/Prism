@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicationDocuments = [
   "README.md",
+  "CONTRIBUTORS.md",
   "CONTRIBUTING.md",
   "SECURITY.md",
   "ARCHITECTURE.md",
@@ -13,8 +14,18 @@ const publicationDocuments = [
   "docs/backups-and-restore.md",
   "docs/pre-baseline-database-migration.md",
   "docs/template-catalog.md",
+  "docs/template-license.md",
   "docs/deployment.md",
   "frontend/DESIGN_SYSTEM.md",
+  "features/README.md",
+  "features/ai-drafting/README.md",
+  "features/contract-templates/README.md",
+  "features/contract-review/README.md",
+  "features/tabular-review/README.md",
+  "features/review-playbooks/README.md",
+  "features/document-editor/README.md",
+  "features/review-and-approvals/README.md",
+  "features/workspaces/README.md",
 ];
 const requiredReadmeLinks = publicationDocuments.filter((document) => document !== "README.md");
 const packageFiles = [
@@ -48,6 +59,7 @@ const migrationDocumentationContracts = new Map([
         "npm run db:migrate --workspace @prism/backend",
         "npm run seed:core --workspace @prism/backend",
         "npm run seed:templates --workspace @prism/backend",
+        "npm run seed:bundled-docx --workspace @prism/backend",
       ],
       requiredStatements: [automaticMigrationStatement],
     },

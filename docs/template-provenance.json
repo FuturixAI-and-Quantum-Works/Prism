@@ -1,4 +1,491 @@
 {
   "schemaVersion": 1,
-  "docx": []
+  "docx": [
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/01_Rent_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/01_Rent_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "2c1c1d0e1cfc0b46341c8f3bead98f5b9454861ed48f7210913ae5e764f78140"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/02_Residential_Lease_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/02_Residential_Lease_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "9de023f7fcc9f3390c6bedddb044973997d90fc7b667e135478e73eab36c6ed1"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/03_Commercial_Lease_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/03_Commercial_Lease_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "5ad353c5b690f97a4125dc12f1c5f7c8b1a5fbf1f1671153c08962a6526ff217"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/04_Lease_Extension_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/04_Lease_Extension_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "da85a4a1764909f7ca681719e5daf8a14d688a7ed5446af24d83e33892ae8296"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/05_Lease_Renewal_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/05_Lease_Renewal_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "652f1c47a84c12d11008dbbe3b2c64a0e0572480675abcc43caef1f47dae219e"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/06_Lease_Termination_Notice_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/06_Lease_Termination_Notice_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "1d8c86d60417415e6a6c5c4721ed5d227cd80ee5ced11cc757a9dbf1bfaaac3d"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/07_Sale_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/07_Sale_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "6ff7c6a5eb85583e7182bfd50c71d7226489fb131204135387188eb088978555"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/08_Agreement_to_Sell_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/08_Agreement_to_Sell_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "2ccd360fe2b15b1170d75e818b2ebeb058fb36b2b1837ed85074869fe5eb2c0f"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/09_Sale_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/09_Sale_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "acd5e51e0712c2389afd1141f1e8c0fbedde32337a71155f7c794bfaa3f1c883"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/10_Gift_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/10_Gift_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "b948b534bb54ce13278f0dacdfaea5f5fd68ec6935632b23dabc9d8512eb0449"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/11_Release_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/11_Release_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "398e34bc9613c3104fc57ecfd713c6077cd68d80ecd9e58ecd9386354779e333"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/12_Relinquishment_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/12_Relinquishment_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "0a500795bff3ea9fa858683005c937a440823ef7d9ea9f984b65f62e88b668e7"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/13_Partition_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/13_Partition_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "b7923b239eaac806fd164b493f7583766fe8134b83339e74b6890980711190c0"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/14_Family_Settlement_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/14_Family_Settlement_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "f74acaeb14a18dfd4fc53b8bae2043732e7b7d35246067e185feb1f69615ab3b"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/15_Mortgage_Deed_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/15_Mortgage_Deed_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "1dd85ad5121fc3b94ec2957e35877de2e8a0980f9fcc23cc261ea7091f14f637"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/16_Simple_Mortgage_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/16_Simple_Mortgage_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "58da3eb8cb8a4b91e7c71bee2abe6516725d3e8c2ee110aa7114189b8de615af"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/17_Equitable_Mortgage_Declaration_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/17_Equitable_Mortgage_Declaration_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "cb08e3199b168e0c4ca7c3cc167f3a4b41f8c6957d5219662d135c1c4159b625"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/18_Power_of_Attorney_for_Property_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/18_Power_of_Attorney_for_Property_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "cb898323e7c6cc6d5ab548ccae45d90094100028afa36e54e78c7415659475e9"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/19_Special_POA_for_Sale_of_Property_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/19_Special_POA_for_Sale_of_Property_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "77f5fae151a326e0c03ca15a790c06259ff0eda1b86913e0f2e67165ed500499"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/20_General_POA_for_Property_Management_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/20_General_POA_for_Property_Management_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "95f21ee7b80d4aa7ae19060af601ed93ec66fe34790a2cf419fff691f934eaea"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/21_Board_Meeting_Notice_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/21_Board_Meeting_Notice_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "a759be226b8972b607607094d5a3f9abe7eb0c5c6cb36114540e876d96e5794e"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/22_Board_Resolution_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/22_Board_Resolution_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "d0394d2040f841fd34dbe3b535f5e47188e4a7c15792e37103fd0b2837de7281"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/23_Ordinary_Resolution_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/23_Ordinary_Resolution_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "d648dbf77486872377c20b11d0a4410f2063f67f0a0bee882dff92254a7a3358"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/24_Special_Resolution_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/24_Special_Resolution_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "e244cf509722574c259fcda9d9a85652bbb73b91713dbd4547231d1b4d843e3a"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/25_Shareholder_Resolution_Sheet_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/25_Shareholder_Resolution_Sheet_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "c4e406b5e8e1dfaf6b2ca2dd29300ea370a54719b26fdb8156f21b8bc4541559"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Drag_Along_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Drag_Along_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "a73d391db36e6c14e0668d4f8db1a04e38e006f58708d3785241336715c8175f"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/ESOP_Exercise_Notice_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/ESOP_Exercise_Notice_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "9b31629c63611f2acb59717fc0a10988840e198dc6bfb2e8033b1b598863dc7d"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/ESOP_Grant_Letter_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/ESOP_Grant_Letter_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "e8bf560a1bbb52ffc85800586ccdc8c2970b677dd505d3f815fd771310e0b572"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/ESOP_Policy_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/ESOP_Policy_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "9e5ab273189da7a4cd3c5d7e5b589ba8cd1871412c0564ee1ff6a423b5eb3251"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Equity_Split_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Equity_Split_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "1caded2d6c6332cbf8ebd151838b67c471e35f130d4dc1a55c78f38d4b3348ac"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Founder_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Founder_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "947bbeaa47c91b0ecb8d785883635b991c5626c70a9d34e5b2cab349dc76624f"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Founders_IP_Assignment_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Founders_IP_Assignment_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "f0323b7aa7e408d8cd9376b516c7212d6ecf83ab1cd32f99c3afd095124afb9a"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Investor_Rights_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Investor_Rights_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "fdbf2be4857a982910290d54c0cba498d439d8dccf3443cd17a3e1ea0c07d621"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Breach_of_Contract_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Breach_of_Contract_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "eebfed4216d4b7b05bdfbc5bf6bf189bcd27f575c5a3a9ed54d67c9330ef206d"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Cheque_Bounce_Sec138_NI_Act_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Cheque_Bounce_Sec138_NI_Act_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "210f1acaed417f542d68dab96d2c4e0a02fa33f8374164c69c3e3fc97d2f19df"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Copyright_Infringement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Copyright_Infringement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "a0e80ab694691f9dab83d0502c9e46cc3f78a1d8cfcca4f7a8d849dc15508130"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Defamation_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Defamation_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "9400aeecbab8bc526913a177d9c5e45ea91ab0ad8d9d8bf7f3b1b718ef434e4b"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Non_Payment_of_Rent_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Non_Payment_of_Rent_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "0a3001fbabdfe24efd9ff69d4987d294bb003cc3135614403210329c027f9947"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Payment_Recovery_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Payment_Recovery_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "690ec48da42ee78e658871c5655f72e788d4a0ffc6f670772b2969650b487b7f"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Recovery_of_Loan_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Recovery_of_Loan_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "cbc5cb483de96d3f8a3bffe3cbc2080c8eca105657648bdf32763fe461610de2"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Termination_of_Services_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Termination_of_Services_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "64d52136b9d0d4b47f32ef6d1dc2af424d6d7bc2db75b230750ed4c2eb4ec627"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_Trademark_Infringement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_Trademark_Infringement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "0086de147ae832ec1491b4887e8352060cd438f38c259961edf82950e0a88d47"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_for_Refund_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_for_Refund_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "15a9d7cc9548b6bb99faa3c6661a5afa53a4678709410d60a8a76c4a0c8bc88d"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_to_Employee_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_to_Employee_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "012997376a4bc05d919aefd2cfd06308473a0b638171528dbb4f3a7c717e71b2"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Legal_Notice_to_Employer_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Legal_Notice_to_Employer_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "65f4d0e30c3debb46e94c5a09f9f0721bbe03978253f1caff8716bb8cebff9bd"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Notice_Invoking_Arbitration_Sec21_AC_Act_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Notice_Invoking_Arbitration_Sec21_AC_Act_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "3da3a4a93c21792b079d2fc839dd56dcd50c7fb5ae1abe3d015a4a26aec6f127"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Notice_for_Termination_of_Contract_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Notice_for_Termination_of_Contract_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "b98d95e859f4ac6da9b9376710b3b12a8b966fab57f4c021387885b58256f753"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Public_Notice_Format_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Public_Notice_Format_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "09a0da207104368b6752b3d0192793b54ad5892701e6930474255a351c1e66ac"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/ROFO_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/ROFO_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "7d4a34851ba28e48780754ef52cadfeeab16c39f8c81ec395a7b03a740dae87f"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/ROFR_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/ROFR_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "79c13e27f81d7adfad07e03a2f9885c144551a04ff007efa2c65f9f5522392f1"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Share_Subscription_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Share_Subscription_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "2e78253de23a8bd38ac350e8dd1bde43632238d3e3af5268437c792855166cf9"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Sweat_Equity_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Sweat_Equity_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "a6d10be559a30a2cbc701710e7bee46fe1ea3dd6f603d42476c1c676f287ffd3"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Tag_Along_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Tag_Along_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "51086daf74fa58950fc246e51aef22ccc2bb22e62ced4332a0046498b16a4643"
+    },
+    {
+      "path": "backend/data/seed-packs/docx/v1/futurixai-legal/Technology_Assignment_Agreement_Template.docx",
+      "source": "https://github.com/FuturixAI-and-Quantum-Works/legalCloneBE/blob/e7be6ac7480a5611e2f204382d20014cb8327861/backend/Templates/Technology_Assignment_Agreement_Template.docx",
+      "author": "FuturixAI-and-Quantum-Works",
+      "license": "AGPL-3.0-only",
+      "redistributionGrant": "docs/template-license.md",
+      "attribution": "FuturixAI-and-Quantum-Works. Licensed under AGPL-3.0-only; retain the license and provenance notices.",
+      "sha256": "f26a073644d0416f255946635662c31400c4b33869a93c70068cb81423c5d1b3"
+    }
+  ]
 }
